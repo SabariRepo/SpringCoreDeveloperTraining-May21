@@ -7,4 +7,6 @@ import org.springframework.context.annotation.Profile;
 @Profile("qa")
 public class DataBasesConfiguration {
 
+	
+	
 }

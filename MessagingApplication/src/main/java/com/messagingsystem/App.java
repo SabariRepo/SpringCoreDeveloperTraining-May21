@@ -4,6 +4,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.messagingsystem.client.ClientMessagingSystem;
+import com.messagingsystem.service.EmployeeService;
+import com.messagingsystem.service.SMSService;
 
 /**
  * Hello world!
@@ -26,8 +28,14 @@ public class App
     	
     	applicationContext.refresh();
         
-    //	ClientMessagingSystem clientMessagingSystem = (ClientMessagingSystem)applicationContext.getBean("cms");
+    	//System.out.println("IoC Factory is initializd!.");
     	
+   // EmployeeService employeeService = applicationContext.getBean(EmployeeService.class);
+    	
+    	//System.out.println("End........");
+    	
+    	ClientMessagingSystem clientMessagingSystem = (ClientMessagingSystem)applicationContext.getBean("cms");
+    	System.out.println(applicationContext.containsBean("cms"));
     	ClientMessagingSystem clientMessagingSystem1 = applicationContext.getBean(ClientMessagingSystem.class);
     	
     	ClientMessagingSystem clientMessagingSystem2 = applicationContext.getBean(ClientMessagingSystem.class);
@@ -36,6 +44,11 @@ public class App
     	
     	
     	clientMessagingSystem1.clientMessageProcessing("Hi John Vijay, lets catchup this weekend!");
+    
+    	//applicationContext.close(); //Close this application context, destroying all beans in its bean factory. doClose()
     	
+    	applicationContext.registerShutdownHook();
+    	//applicationContext.getBean(SMSService.class);
+    	//Register a shutdown hook named SpringContextShutdownHook with the JVM runtime, closing this context on JVM shutdown . doClose()
     }
 }
