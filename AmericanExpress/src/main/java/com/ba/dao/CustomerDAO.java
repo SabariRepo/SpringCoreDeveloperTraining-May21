@@ -1,11 +1,14 @@
 package com.ba.dao;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.ba.model.Customer;
@@ -53,23 +56,74 @@ public class CustomerDAO {
 			return false;
 	}
 
-	public boolean updateCustomer(Customer customer) {
+	public boolean updateCustomer(int cust_id, String cust_addr) {
 
-		return false;
+		try {
+			jdbcTemplate.update("update customer set cust_addr=? where cust_id=?", new Object[] { cust_addr, cust_id });
+		} catch (DataAccessException exception) {
+			exception.printStackTrace();
+		}
+
+		return true;
 	}
 
 	public boolean deleteCustomer(int customerId) {
 
-		return false;
+		try {
+			jdbcTemplate.update("delete from customer where cust_id=?", new Object[] { customerId });
+		} catch (DataAccessException exception) {
+			exception.printStackTrace();
+		}
+
+		return true;
 	}
 
-	public boolean findAllCustomers() {
+	public List<Customer> findAllCustomers() {
 
-		return false;
+		// jdbcTemplate.query
+
+		// Anonymous Class Style
+		/*
+		 * RowMapper<Customer> rm = new RowMapper<Customer>() {
+		 * 
+		 * @Override public Customer mapRow(ResultSet rs, int rowNum) throws
+		 * SQLException { int cust_id = rs.getInt(1); String cust_name =
+		 * rs.getString(2); String cust_addr = rs.getString(3);
+		 * 
+		 * System.out.println("This is Row Number: " + rowNum);
+		 * 
+		 * Customer customer = new Customer(cust_id, cust_name, cust_addr);
+		 * 
+		 * return customer; } };
+		 */
+
+		// Lambda Style
+		/*
+		 * RowMapper<Customer> rm1 = (rs, rowNum) -> { int cust_id = rs.getInt(1);
+		 * String cust_name = rs.getString(2); String cust_addr = rs.getString(3);
+		 * 
+		 * System.out.println("This is Row Number: " + rowNum);
+		 * 
+		 * Customer customer = new Customer(cust_id, cust_name, cust_addr);
+		 * 
+		 * return customer; };
+		 */
+
+		List<Customer> customer = jdbcTemplate.query("select * from customer where cust_name=?",
+				new CustomerRowMapper(), new Object[] { "SundarPichai" });
+
+		// List<Customer> customer = jdbcTemplate.query("select * from customer where
+		// cust_name=?", new CustomerRowMapper(),new Object[] {"SundarPichai"});
+
+		return customer;
 	}
 
-	public boolean findCustomerByName(String customerName) {
+	public Customer findCustomerByName(String customerName) {
 
-		return false;
+		// return jdbcTemplate.queryForObject("select * from customer where
+		// cust_name=?",new Object[] {customerName},new CustomerRowMapper());
+		// Columne unique or column Primary key
+		return jdbcTemplate.queryForObject("select * from customer where cust_name=?", new Object[] { customerName },
+				new int[] { java.sql.Types.VARCHAR }, new CustomerRowMapper());
 	}
 }

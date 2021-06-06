@@ -23,19 +23,19 @@ public class CustomerService {
 		 return customerDAO.createCustomers(customers);
 	 }
 	 
-	 public boolean updateCustomer(Customer customer) {
-		 return customerDAO.updateCustomer(customer);
+	 public boolean updateCustomer(int cust_id,String cust_addr) {
+		 return customerDAO.updateCustomer(cust_id,cust_addr);
 	 }
 	 
 	 public boolean deleteCustomer(int customerId) {
 		 return customerDAO.deleteCustomer(customerId);
 	 }
 	 
-	 public boolean findAllCustomers() {
+	 public List<Customer> findAllCustomers() {
 		 return customerDAO.findAllCustomers();
 	 }
 	 
-	 public boolean findCustomerByName(String customerName) {
+	 public Customer findCustomerByName(String customerName) {
 		 return customerDAO.findCustomerByName(customerName);
 	 }
 }
