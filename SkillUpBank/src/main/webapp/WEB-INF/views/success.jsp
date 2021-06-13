@@ -7,10 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
-			<h1  style="color:red">Skillup-Bank - Home Page</h1> <br>
-			
-			<a href="/SkillUpBank/skillup/viewaddform">Add Account</a>
-		 	<a href="/SkillUpBank/skillup/searchaccount">Search Account</a>
+<h1> Account Added Successfully!</h1>
 </body>
 </html>

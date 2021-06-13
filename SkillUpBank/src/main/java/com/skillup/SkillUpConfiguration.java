@@ -3,12 +3,14 @@ package com.skillup;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
+@Import(value = {DBConfig.class})
 @ComponentScan(basePackages = {"com.skillup"})
 @EnableWebMvc
 //Adding this annotation to an @Configuration class imports the Spring MVC configuration from WebMvcConfigurationSupport
@@ -16,6 +18,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 public class SkillUpConfiguration{ //implements WebMvcConfigurer {
 	
 	//WebMvcConfigurerAdapter
+	
+	
 	
 	@Bean
 	public InternalResourceViewResolver internalResourceViewResolver() {
