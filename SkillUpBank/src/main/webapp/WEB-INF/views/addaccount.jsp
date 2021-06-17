@@ -6,6 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+.error{color:red}
+</style>
 </head>
 <body>
 	<br>
@@ -16,9 +19,11 @@
 	
 	<spring-form:form action="addaccount" method="post" modelAttribute="acc">
 	
-	Account Id: <spring-form:input path="accountId"/> <br>
+	Account Id: <spring-form:input path="accountId"/> 
+	<spring-form:errors path="accountId" cssClass="error"/> <br>
 	
-	Account Holder Name: <spring-form:input path="accountName"/> <br>
+	Account Holder Name: <spring-form:input path="accountName"/>
+	<spring-form:errors path="accountName" cssClass="error"/> <br>
 	
 	Account Balance: <spring-form:input path="accountBalance"/> <br>
 	

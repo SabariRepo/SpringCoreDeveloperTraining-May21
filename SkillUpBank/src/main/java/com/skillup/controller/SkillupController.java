@@ -1,12 +1,17 @@
 package com.skillup.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -50,8 +55,13 @@ public class SkillupController {
 	}
 
 	@PostMapping("/addaccount")
-	public String addAccount(@ModelAttribute("acc") Account account) {
+	public String addAccount(@Valid @ModelAttribute("acc") Account account, BindingResult bindingResult) {
 		// request.getParameter("accountId");
+
+		if (bindingResult.hasErrors()) {
+			return "addaccount";
+		}
+
 		System.out.println(account);
 
 		boolean result = accountService.addAccount(account);
@@ -77,6 +87,14 @@ public class SkillupController {
 
 		return mv;
 	}
+
+	//http://localhost:8080/skillupbank/skillup/accounts/121/custname/Sabari
+	@GetMapping("/accounts/{accountId}/custname/{name}")
+	@ResponseBody
+	public List<Account> getAllAccountDetails(@PathVariable(name = "accountId") int acid,@PathVariable String name) {
+		return accountService.findAllAccountDetails();
+	}
+	
 
 	@ExceptionHandler(AccountIDNotFoundException.class)
 	public ModelAndView handleException(AccountIDNotFoundException ex) {

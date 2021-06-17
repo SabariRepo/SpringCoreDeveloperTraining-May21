@@ -2,6 +2,7 @@ package com.skillup.dao;
 
 import java.sql.SQLType;
 import java.sql.Types;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -44,5 +45,9 @@ public class AccountDAO {
 				throw new AccountIDNotFoundException("Hi The Given Account Id"+accountId+"Does Not Exists");
 		}
 		return account;
+	}
+	
+	public List<Account> findAllAccountDetails(){
+		return jdbcTemplate.query("select * from account", accountRowMapper);
 	}
 }

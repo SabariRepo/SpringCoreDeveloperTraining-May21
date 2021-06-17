@@ -1,10 +1,19 @@
 package com.skillup.model;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+
 //Exclusively this acted as a Java Bean - Non Spring Bean - Not Managed By IoC Container
 public class Account {
 
+	@Min(value = 100)
+	@Max(value = 1000)
 	private int accountId;
+	
+	@NotEmpty
 	private String accountName;
+	
 	private float accountBalance;
 	
 	public Account() {
