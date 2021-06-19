@@ -107,5 +107,22 @@ public class SkillupController {
 		mv.addObject("err", msg);
 		return mv;
 	}
+	
+	@GetMapping("/admin")
+	@ResponseBody
+	public String adminstration() {
+		return "Administration";
+	}
 
+	@GetMapping("/developer")
+	@ResponseBody
+	public String developer() {
+		return "Developer";
+	}
+	
+	@GetMapping("/tester")
+	@ResponseBody
+	public String tester() {
+		return "Tester";
+	}
 }
