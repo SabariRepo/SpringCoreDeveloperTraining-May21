@@ -26,4 +26,12 @@ public class AccountService {
 	public List<Account> findAllAccountDetails(){
 		return accountDAO.findAllAccountDetails();
 	}
+	
+	public void accountBatchUpdate() {
+		accountDAO.accountBatchUpdate();
+	}
+	
+	public void callgetAccountProc() {
+		accountDAO.callgetAccountProc();
+	}
 }

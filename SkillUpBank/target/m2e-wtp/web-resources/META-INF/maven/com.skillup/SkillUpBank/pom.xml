@@ -9,12 +9,6 @@
   <url>http://maven.apache.org</url>
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
     	<groupId>org.springframework</groupId>
     	<artifactId>spring-webmvc</artifactId>
     	<version>5.3.7</version>
@@ -39,6 +33,32 @@
     	<artifactId>spring-security-config</artifactId>
     	<version>5.5.0</version>
     </dependency>
+    <dependency>
+    	<groupId>junit</groupId>
+    	<artifactId>junit</artifactId>
+    	<version>4.12</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.springframework</groupId>
+    	<artifactId>spring-test</artifactId>
+    	<version>5.3.8</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.mockito</groupId>
+    	<artifactId>mockito-core</artifactId>
+    	<version>3.9.0</version>
+    </dependency>
+   <dependency>
+		<groupId>org.hamcrest</groupId>
+		<artifactId>hamcrest-library</artifactId>
+		<version>2.2</version>
+		<scope>test</scope>
+	</dependency>
+   <dependency>
+   	<groupId>org.hamcrest</groupId>
+   	<artifactId>hamcrest-core</artifactId>
+   	<version>2.2</version>
+   </dependency>
   </dependencies>
   <build>
     <finalName>SkillUpBank</finalName>
